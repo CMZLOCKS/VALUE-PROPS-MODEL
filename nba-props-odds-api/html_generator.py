@@ -589,22 +589,35 @@ class HTMLGenerator:
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>CMZPROPS MODEL</title>
     <style>
         * {{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }}
+        
+        html {{
+            overflow-x: hidden;
+            width: 100%;
+            background-color: #0f172a;
         }}
         
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: url('abstract_background.jpg') no-repeat center center fixed, linear-gradient(135deg, #1a0a2e 0%, #0f172a 50%, #1e293b 100%);
             background-size: cover;
+            background-color: #0f172a;
             color: #e2e8f0;
             min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
+            width: 100%;
         }}
         
         body::before {{
