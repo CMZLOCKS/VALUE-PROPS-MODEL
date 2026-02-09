@@ -1,0 +1,3424 @@
+{
+  "id": "b69d85cac76c01181ada3299bc50ed54",
+  "sport_key": "basketball_nba",
+  "sport_title": "NBA",
+  "commence_time": "2026-02-07T23:12:00Z",
+  "home_team": "San Antonio Spurs",
+  "away_team": "Dallas Mavericks",
+  "bookmakers": [
+    {
+      "key": "fanduel",
+      "title": "FanDuel",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:25:25Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 136,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -182,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -104,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -128,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -166,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 124,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -102,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -130,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Brandon Williams",
+              "price": -125,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Brandon Williams",
+              "price": -106,
+              "point": 3.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:25:25Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -108,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -122,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -120,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -110,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": -128,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -104,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -122,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -108,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -122,
+              "point": 20.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -108,
+              "point": 20.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -114,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -114,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -112,
+              "point": 25.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -118,
+              "point": 25.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -108,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -122,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -102,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -130,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -114,
+              "point": 20.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -114,
+              "point": 20.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -112,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -118,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Brandon Williams",
+              "price": -102,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Brandon Williams",
+              "price": -130,
+              "point": 11.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:25:25Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -118,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -112,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -106,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -125,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -140,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 106,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -154,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 116,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": 136,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -182,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -132,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 100,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": 114,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -152,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": -154,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": 116,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -120,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -110,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 116,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -154,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:25:25Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -245,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 178,
+              "point": 0.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -120,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -110,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -122,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -108,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -160,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": 120,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 126,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -168,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -154,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 116,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -130,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -102,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -198,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": 146,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 182,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -250,
+              "point": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "betonlineag",
+      "title": "BetOnline.ag",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:13:55Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -103,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -125,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 104,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -135,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -108,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -120,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -135,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 104,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 100,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -130,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -149,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 115,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -143,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 110,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": 132,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -172,
+              "point": 3.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:13:55Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -102,
+              "point": 24.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -127,
+              "point": 24.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": 106,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -137,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -108,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -120,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 100,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -130,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -109,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -119,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -103,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -125,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -114,
+              "point": 24.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -114,
+              "point": 24.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -110,
+              "point": 17.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -118,
+              "point": 17.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": 100,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -130,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -105,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -123,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -114,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -114,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 110,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -143,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -130,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": 100,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -127,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -102,
+              "point": 10.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:13:55Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": 103,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -133,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -105,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -123,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -127,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -102,
+              "point": 7.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 109,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -141,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -110,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -118,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 112,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -145,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": 152,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -200,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 106,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -137,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -132,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 102,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -116,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -111,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 122,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -159,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 136,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -179,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -102,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -127,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": 122,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -159,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Luke Kornet",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Luke Kornet",
+              "price": -108,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:13:55Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -189,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 144,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": 110,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -143,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": 186,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -250,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 144,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -189,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 113,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -147,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 120,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -156,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -103,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -125,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -132,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 102,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -143,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 110,
+              "point": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "williamhill_us",
+      "title": "Caesars",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:26:34Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -106,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -125,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 117,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -157,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 130,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -173,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -145,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": 109,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:26:34Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -120,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -112,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -157,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 117,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -134,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": 101,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -125,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -107,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -137,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": 103,
+              "point": 7.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -112,
+              "point": 20.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -120,
+              "point": 20.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -127,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -106,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -121,
+              "point": 25.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -110,
+              "point": 25.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -127,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -105,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -110,
+              "point": 22.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -121,
+              "point": 22.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:26:34Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -112,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -102,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -132,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -112,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -105,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -127,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 102,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -136,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -145,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 109,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -141,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 106,
+              "point": 3.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:26:34Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -106,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -127,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -127,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -105,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 142,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -193,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 155,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -213,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -154,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": 115,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -121,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 118,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -159,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -157,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 117,
+              "point": 2.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "draftkings",
+      "title": "DraftKings",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:26:22Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -160,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": 124,
+              "point": 7.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 110,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -140,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -154,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": 120,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -160,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 124,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 130,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -166,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 105,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -135,
+              "point": 2.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:26:22Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -110,
+              "point": 26.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -120,
+              "point": 26.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -105,
+              "point": 23.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -125,
+              "point": 23.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": 100,
+              "point": 20.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -130,
+              "point": 20.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -130,
+              "point": 17.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 100,
+              "point": 17.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -110,
+              "point": 14.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -120,
+              "point": 14.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -120,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -110,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": 100,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -130,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -105,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -125,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -105,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -125,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -110,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -120,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": 100,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -130,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -105,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -125,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -130,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": 100,
+              "point": 7.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:26:22Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 100,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -130,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -135,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 105,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -110,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -120,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -105,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -125,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 120,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -154,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -110,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -115,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -115,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -105,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -125,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -175,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 135,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 124,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -160,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -166,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": 130,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -125,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -105,
+              "point": 2.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:26:22Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -166,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 130,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -154,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": 120,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -188,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": 145,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -125,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -105,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -105,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -125,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -140,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": 114,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -145,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 154,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -200,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -125,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -105,
+              "point": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "betmgm",
+      "title": "BetMGM",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:12:56Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": 140,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -190,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -120,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -110,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": 125,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -165,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -105,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -130,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -125,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -105,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -140,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 105,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Luke Kornet",
+              "price": 110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Luke Kornet",
+              "price": -145,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -145,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 145,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -200,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 100,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -130,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": 110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -145,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": 105,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -145,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": 100,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -135,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -125,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -105,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -165,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 125,
+              "point": 1.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:12:56Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -118,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -110,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -130,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -105,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Luke Kornet",
+              "price": 110,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Luke Kornet",
+              "price": -150,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 100,
+              "point": 17.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -135,
+              "point": 17.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -118,
+              "point": 24.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -115,
+              "point": 24.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -115,
+              "point": 23.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -115,
+              "point": 23.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -110,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -120,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -150,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": 110,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": 110,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": -150,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -105,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -125,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 100,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -130,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -118,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -115,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -130,
+              "point": 14.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -105,
+              "point": 14.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -110,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -118,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -135,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": 100,
+              "point": 10.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:12:56Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -118,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -110,
+              "point": 7.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -105,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -130,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -110,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -120,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -110,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 105,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -140,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": 120,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -160,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -110,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -125,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Luke Kornet",
+              "price": -135,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Luke Kornet",
+              "price": 100,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": 150,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": -200,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 110,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -145,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -118,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -110,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -140,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 105,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -110,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -120,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -110,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -120,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -165,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": 125,
+              "point": 2.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:12:56Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 100,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -135,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -200,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": 145,
+              "point": 0.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": 110,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -145,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -225,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": 165,
+              "point": 0.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -110,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -120,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 145,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -200,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Keldon Johnson",
+              "price": 165,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Keldon Johnson",
+              "price": -225,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -145,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 105,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 120,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -160,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Dylan Harper",
+              "price": -150,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "Dylan Harper",
+              "price": 115,
+              "point": 0.5
+            },
+            {
+              "name": "Over",
+              "description": "Klay Thompson",
+              "price": -175,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Klay Thompson",
+              "price": 130,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -190,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 140,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -235,
+              "point": 0.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": 170,
+              "point": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "betrivers",
+      "title": "BetRivers",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:13:00Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -165,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 120,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -103,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -134,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -177,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 128,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -129,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -106,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -113,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -121,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -136,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 100,
+              "point": 4.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:13:00Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -157,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 114,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -109,
+              "point": 25.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -125,
+              "point": 25.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": 112,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -152,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -108,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -127,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -155,
+              "point": 14.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": 112,
+              "point": 14.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -143,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": 106,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -104,
+              "point": 24.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -134,
+              "point": 24.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -137,
+              "point": 17.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 102,
+              "point": 17.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": 108,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -148,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -134,
+              "point": 24.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -103,
+              "point": 24.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -103,
+              "point": 14.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -134,
+              "point": 14.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 114,
+              "point": 26.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -157,
+              "point": 26.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -165,
+              "point": 22.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 118,
+              "point": 22.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": 120,
+              "point": 19.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -167,
+              "point": 19.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -120,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -114,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": 115,
+              "point": 16.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -157,
+              "point": 16.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -115,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -117,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -122,
+              "point": 8.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -112,
+              "point": 8.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -129,
+              "point": 23.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -106,
+              "point": 23.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -115,
+              "point": 12.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -118,
+              "point": 12.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -107,
+              "point": 18.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -127,
+              "point": 18.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -132,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -104,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -150,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": 110,
+              "point": 9.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": 117,
+              "point": 13.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -162,
+              "point": 13.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": -127,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -108,
+              "point": 10.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -167,
+              "point": 23.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 120,
+              "point": 23.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": -162,
+              "point": 14.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": 117,
+              "point": 14.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": 123,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -167,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -115,
+              "point": 15.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -118,
+              "point": 15.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 108,
+              "point": 16.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -148,
+              "point": 16.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:13:00Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": 114,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -155,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Naji Marshall",
+              "price": 115,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Naji Marshall",
+              "price": -157,
+              "point": 5.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": 104,
+              "point": 11.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": -141,
+              "point": 11.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -132,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": -104,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Daniel Gafford",
+              "price": -127,
+              "point": 7.5
+            },
+            {
+              "name": "Under",
+              "description": "Daniel Gafford",
+              "price": -108,
+              "point": 7.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 112,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -152,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Stephon Castle",
+              "price": -114,
+              "point": 4.5
+            },
+            {
+              "name": "Under",
+              "description": "Stephon Castle",
+              "price": -120,
+              "point": 4.5
+            },
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -121,
+              "point": 3.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": -113,
+              "point": 3.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -134,
+              "point": 6.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": 100,
+              "point": 6.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -122,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -112,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:13:00Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Devin Vassell",
+              "price": -210,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Devin Vassell",
+              "price": 148,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Harrison Barnes",
+              "price": -118,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Harrison Barnes",
+              "price": -115,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -109,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -125,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -155,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 112,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Victor Wembanyama",
+              "price": -210,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Victor Wembanyama",
+              "price": 148,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": 112,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": -155,
+              "point": 2.5
+            },
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": 114,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -155,
+              "point": 1.5
+            },
+            {
+              "name": "Over",
+              "description": "P.J. Washington",
+              "price": 190,
+              "point": 1.5
+            },
+            {
+              "name": "Under",
+              "description": "P.J. Washington",
+              "price": -278,
+              "point": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fanatics",
+      "title": "Fanatics",
+      "markets": [
+        {
+          "key": "player_assists",
+          "last_update": "2026-02-07T23:25:52Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "De'Aaron Fox",
+              "price": -140,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "De'Aaron Fox",
+              "price": 105,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_points",
+          "last_update": "2026-02-07T23:25:52Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Julian Champagnie",
+              "price": -125,
+              "point": 10.5
+            },
+            {
+              "name": "Under",
+              "description": "Julian Champagnie",
+              "price": -105,
+              "point": 10.5
+            }
+          ]
+        },
+        {
+          "key": "player_rebounds",
+          "last_update": "2026-02-07T23:25:52Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Cooper Flagg",
+              "price": -115,
+              "point": 5.5
+            },
+            {
+              "name": "Under",
+              "description": "Cooper Flagg",
+              "price": -115,
+              "point": 5.5
+            }
+          ]
+        },
+        {
+          "key": "player_threes",
+          "last_update": "2026-02-07T23:25:52Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "description": "Max Christie",
+              "price": -140,
+              "point": 2.5
+            },
+            {
+              "name": "Under",
+              "description": "Max Christie",
+              "price": 105,
+              "point": 2.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

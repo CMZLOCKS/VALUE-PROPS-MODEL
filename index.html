@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMZPROPS MODEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: url('abstract_background.jpg') no-repeat center center fixed, linear-gradient(135deg, #1a0a2e 0%, #0f172a 50%, #1e293b 100%);
+            background-size: cover;
+            color: #e2e8f0;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.5) 100%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 24px;
+            padding: 40px 50px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        
+        .header-left p {
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .season-record {
+            text-align: right;
+        }
+        
+        .season-label {
+            color: #10b981;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .record-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: #10b981;
+            line-height: 1;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #10b981;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: #10b981;
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .props-grid.single-column {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .prop-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 20px;
+            padding: 28px;
+            border: 2px solid rgba(148, 163, 184, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Glow effect for OVER cards */
+        .prop-card.over-glow {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Glow effect for UNDER cards */
+        .prop-card.under-glow {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .prop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+        }
+        
+        .prop-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .team-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            overflow: hidden;
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .player-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .game-info {
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .bet-line {
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .bet-line.under {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .bet-type {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        /* Color the OVER/UNDER text */
+        .bet-type.over-text {
+            color: #10b981;
+        }
+        
+        .bet-type.under-text {
+            color: #ef4444;
+        }
+
+        .bet-details {
+            color: #ffffff;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .stat-value.positive {
+            color: #10b981;
+        }
+        
+        .stat-value.negative {
+            color: #ef4444;
+        }
+        
+        .insights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .insight-tag {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .insight-tag.positive {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+        
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .performance-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        
+        .performance-card h3 {
+            color: #10b981;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        .perf-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        
+        .perf-stat:last-child {
+            border-bottom: none;
+        }
+        
+        .perf-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .perf-value {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        /* ===== Prop Tracker Styles ===== */
+        .prop-tracker {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+            display: none;
+        }
+
+        .tracker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tracker-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tracker-summary {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .tracker-summary span {
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .tracker-hits {
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .tracker-misses {
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .tracker-pending-count {
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .tracker-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tracker-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tracker-row.result-hit {
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .tracker-row.result-miss {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .tracker-row.result-push {
+            border-color: rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .tracker-player {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            min-width: 140px;
+        }
+
+        .tracker-line {
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 130px;
+        }
+
+        .tracker-line.over-text {
+            color: #10b981;
+        }
+
+        .tracker-line.under-text {
+            color: #ef4444;
+        }
+
+        .tracker-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tracker-btn {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: rgba(15, 23, 42, 0.6);
+            color: #94a3b8;
+            transition: all 0.2s ease;
+        }
+
+        .tracker-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .tracker-btn.hit-btn:hover, .tracker-btn.hit-btn.active {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .tracker-btn.miss-btn:hover, .tracker-btn.miss-btn.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .tracker-btn.push-btn:hover, .tracker-btn.push-btn.active {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        .tracker-result {
+            font-size: 13px;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .season-record {
+                text-align: center;
+            }
+            
+            .props-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>CMZPROPS MODEL</h1>
+                    <p>NBA Props Model • Live API Data • Season 2025-26</p>
+                </div>
+                <div class="season-record">
+                    <div class="season-label">SEASON RECORD</div>
+                    <div class="record-number">0-0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Value Plays: LIVE AI PROPS</div>
+
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="all">🔥 Top 6 Plays</button>
+            <button class="tab-button" data-tab="points">Points</button>
+            <button class="tab-button" data-tab="assists">Assists</button>
+            <button class="tab-button" data-tab="rebounds">Rebounds</button>
+            <button class="tab-button" data-tab="threes">3 Points Made</button>
+        </div>
+
+        <div class="props-grid">
+
+        <div class="prop-card over-glow" data-prop-type="points" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="DET" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Duncan Robinson</h3>
+                    <div class="game-info">DET @ CHA • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 10.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 12.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">12.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">12.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+21.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.1</div>
+<div class="insight-tag ">Model: 12.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="CHA" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Ryan Kalkbrenner</h3>
+                    <div class="game-info">CHA vs DET • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 5.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 7.3</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">7.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+32.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.6</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">❄️ Cold Streak</div>
+<div class="insight-tag positive">Edge: +2.6</div>
+<div class="insight-tag ">Model: 8.1</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="DET" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Isaiah Stewart II</h3>
+                    <div class="game-info">DET @ CHA • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 8.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 12.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+36.0%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+4.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +4.0</div>
+<div class="insight-tag ">Model: 12.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="CHA" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Ryan Kalkbrenner</h3>
+                    <div class="game-info">CHA vs DET • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 4.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 5.2</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">6.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">5.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+45.6%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">❄️ Cold Streak</div>
+<div class="insight-tag ">Model: 5.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="CHA" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Kon Knueppel</h3>
+                    <div class="game-info">CHA vs DET/BKN • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 4.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 6.5</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">6.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+13.2%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +1.8</div>
+<div class="insight-tag ">Model: 6.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Anfernee Simons</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 18.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 16.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">14.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">16.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+37.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.7</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.7</div>
+<div class="insight-tag ">Model: 15.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Matas Buzelis</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 18.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 15.7</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">15.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">15.7</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+30.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.5</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.5</div>
+<div class="insight-tag ">Model: 16.0</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaden Ivey</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 12.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 8.2</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">8.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+30.9%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.9</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.9</div>
+<div class="insight-tag ">Model: 8.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="BKN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Danny Wolf</h3>
+                    <div class="game-info">BKN vs DET • Mon, Feb 09 • 07:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 12.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 8.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">8.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+29.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.7</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.7</div>
+<div class="insight-tag ">Model: 8.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="assists" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Anfernee Simons</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 4.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 2.4</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">2.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">2.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+21.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.0</div>
+<div class="insight-tag ">Model: 2.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaden Ivey</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 3.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 1.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">1.7</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">1.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+57.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.6</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.6</div>
+<div class="insight-tag ">Model: 1.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jalen Smith</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 8.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 7.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">6.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">7.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+23.8%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.2</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">Model: 7.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="CHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaden Ivey</h3>
+                    <div class="game-info">CHI @ BKN • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 4.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 2.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">2.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">2.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+16.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.8</div>
+<div class="insight-tag ">Model: 2.7</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="UTA" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Isaiah Collier</h3>
+                    <div class="game-info">UTA @ MIA • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 10.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 9.5</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">7.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">9.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+33.6%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.7</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.7</div>
+<div class="insight-tag ">Model: 8.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="UTA" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jusuf Nurkic</h3>
+                    <div class="game-info">UTA @ MIA • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 9.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 11.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">10.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">11.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+25.6%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +2.1</div>
+<div class="insight-tag ">Model: 11.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="ORL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jalen Suggs</h3>
+                    <div class="game-info">ORL vs MIL • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 15.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 11.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">14.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">11.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+32.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag positive">Edge: +2.0</div>
+<div class="insight-tag ">Model: 13.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="ORL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Paolo Banchero</h3>
+                    <div class="game-info">ORL vs MIL • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 9.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 7.6</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">7.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+23.0%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.2</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag ">Model: 8.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="ORL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Anthony Black</h3>
+                    <div class="game-info">ORL vs MIL • Mon, Feb 09 • 07:40 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 5.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 3.6</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">4.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">3.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+15.2%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.6</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.6</div>
+<div class="insight-tag ">Model: 3.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="MIN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Anthony Edwards</h3>
+                    <div class="game-info">MIN vs ATL • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 28.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 30.3</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">29.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">30.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+31.4%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 31.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="MIN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaden McDaniels</h3>
+                    <div class="game-info">MIN vs ATL • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 13.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 15.4</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">15.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">15.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+32.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.4</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.4</div>
+<div class="insight-tag ">Model: 15.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="ATL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jalen Johnson</h3>
+                    <div class="game-info">ATL @ MIN • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 7.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 8.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">8.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+22.2%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.4</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">Model: 8.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="ATL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Dyson Daniels</h3>
+                    <div class="game-info">ATL @ MIN • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 5.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 6.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">6.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">6.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+16.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">Model: 6.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="MIN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Rudy Gobert</h3>
+                    <div class="game-info">MIN vs ATL • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 12.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 11.4</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">11.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">11.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+25.1%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+0.6</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">Model: 11.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="MIN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Julius Randle</h3>
+                    <div class="game-info">MIN vs ATL • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 7.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 5.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">6.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">5.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+26.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag ">Model: 6.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="SAC" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Herb Jones</h3>
+                    <div class="game-info">SAC @ NOP • Mon, Feb 09 • 08:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 9.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 12.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+36.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.0</div>
+<div class="insight-tag ">Model: 12.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>James Harden</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 21.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 23.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">25.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">23.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+37.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.5</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.5</div>
+<div class="insight-tag ">Model: 25.0</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Dennis Schroder</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 8.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 13.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">12.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">13.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+24.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+4.9</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +4.9</div>
+<div class="insight-tag ">Model: 13.4</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaylon Tyson</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 12.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 15.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">14.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">15.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+40.0%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +3.1</div>
+<div class="insight-tag ">Model: 15.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Donovan Mitchell</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 26.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 27.6</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">28.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">27.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+27.4%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 29.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Donovan Mitchell</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 25.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 27.6</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">28.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">27.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+30.9%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.8</div>
+<div class="insight-tag ">Model: 29.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="DEN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Tim Hardaway Jr</h3>
+                    <div class="game-info">DEN vs CLE • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 12.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 14.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">14.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">14.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+28.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.1</div>
+<div class="insight-tag ">Model: 14.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaylon Tyson</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 11.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 15.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">14.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">15.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+28.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+4.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +4.1</div>
+<div class="insight-tag ">Model: 15.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="DEN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Christian Braun</h3>
+                    <div class="game-info">DEN vs CLE • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 11.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 7.3</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">9.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">7.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+28.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag positive">Edge: +3.1</div>
+<div class="insight-tag ">Model: 8.4</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Dennis Schroder</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 3.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 4.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">4.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+59.6%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">❄️ Cold Streak</div>
+<div class="insight-tag ">Model: 4.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="DEN" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jamal Murray</h3>
+                    <div class="game-info">DEN vs CLE • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 6.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 8.7</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">7.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">8.7</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+31.4%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +2.0</div>
+<div class="insight-tag ">Model: 8.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Donovan Mitchell</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 4.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 6.3</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">6.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+16.1%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.9</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.9</div>
+<div class="insight-tag ">Model: 6.4</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="CLE" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Jaylon Tyson</h3>
+                    <div class="game-info">CLE @ DEN • Mon, Feb 09 • 09:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 4.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 6.1</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">6.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+14.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.6</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag positive">Edge: +1.6</div>
+<div class="insight-tag ">Model: 6.1</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Moses Moody</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 17.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 14.4</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">11.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">14.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+29.8%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.9</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.9</div>
+<div class="insight-tag ">Model: 13.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>De'Anthony Melton</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 15.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 12.8</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">11.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">12.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+31.4%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 12.7</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Pat Spencer</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 13.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 7.6</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">6.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">7.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+33.1%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+6.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +6.3</div>
+<div class="insight-tag ">Model: 7.2</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Draymond Green</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 10.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 5.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">8.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">5.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+23.8%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.2</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag positive">Edge: +3.2</div>
+<div class="insight-tag ">Model: 7.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="assists">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Pat Spencer</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 6.5 ASSISTS</div>
+                <div class="bet-details">Last 10 Avg: 3.4</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">3.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">3.4</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+20.4%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+3.2</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +3.2</div>
+<div class="insight-tag ">Model: 3.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Draymond Green</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 6.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 4.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.6</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">4.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+47.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.1</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag ">Model: 5.4</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Gui Santos</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 6.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 4.2</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">2.8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">4.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+20.7%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 3.7</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Pat Spencer</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 5.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 2.9</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">2.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">2.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+24.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 2.7</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="threes" data-top-play="true">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="GSW" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>De'Anthony Melton</h3>
+                    <div class="game-info">GSW vs MEM • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 2.5 THREES</div>
+                <div class="bet-details">Last 10 Avg: 1.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">1.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">1.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+14.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">📉 Trending Down</div>
+<div class="insight-tag ">Model: 1.2</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="LAL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Austin Reaves</h3>
+                    <div class="game-info">LAL vs OKC • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 20.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 22.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">26.1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">22.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+32.5%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+4.3</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">❄️ Cold Streak</div>
+<div class="insight-tag positive">Edge: +4.3</div>
+<div class="insight-tag ">Model: 24.8</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="OKC" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Aaron Wiggins</h3>
+                    <div class="game-info">OKC @ LAL • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 15.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 13.3</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">10.9</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">13.3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+26.9%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.8</div>
+<div class="insight-tag ">Model: 12.7</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="LAL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Austin Reaves</h3>
+                    <div class="game-info">LAL vs OKC • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 3.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 5.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">5.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+13.2%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.8</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +1.8</div>
+<div class="insight-tag ">Model: 5.3</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card under-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="LAL" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>LeBron James</h3>
+                    <div class="game-info">LAL vs OKC • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line under">
+                <div class="bet-type under-text">UNDER 6.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 5.2</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">5.7</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value negative">5.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+14.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+0.9</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">Model: 5.6</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="points">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="PHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Scoot Henderson</h3>
+                    <div class="game-info">PHI @ POR • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 10.5 POINTS</div>
+                <div class="bet-details">Last 10 Avg: 12.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">12.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+23.8%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.0</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.0</div>
+<div class="insight-tag ">Model: 12.5</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="POR" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Deni Avdija</h3>
+                    <div class="game-info">POR vs PHI • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 6.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 8.0</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">7.2</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">8.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+37.3%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+1.4</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag ">🔥 Hot Streak</div>
+<div class="insight-tag ">Model: 7.9</div>
+
+            </div>
+        </div>
+
+        <div class="prop-card over-glow" data-prop-type="rebounds">
+            <div class="player-header">
+                <div class="team-logo">
+                    <img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="PHI" onerror="this.parentElement.innerHTML='🏀'">
+                </div>
+                <div class="player-info">
+                    <h3>Scoot Henderson</h3>
+                    <div class="game-info">PHI @ POR • Mon, Feb 09 • 10:10 PM EST</div>
+                </div>
+            </div>
+
+            <div class="bet-line over">
+                <div class="bet-type over-text">OVER 2.5 REBOUNDS</div>
+                <div class="bet-details">Last 10 Avg: 4.5</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Season Avg</div>
+                    <div class="stat-value">4.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Last 10 Avg</div>
+                    <div class="stat-value positive">4.5</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">AI Score</div>
+                    <div class="stat-value positive">10.0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">EV</div>
+                    <div class="stat-value positive">+23.8%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Win %</div>
+                    <div class="stat-value">70%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Edge</div>
+                    <div class="stat-value positive">+2.2</div>
+                </div>
+            </div>
+            
+            <div class="insights">
+<div class="insight-tag positive">Edge: +2.2</div>
+<div class="insight-tag ">Model: 4.7</div>
+
+            </div>
+        </div>
+
+        </div>
+        <div class="section-title">Model Performance</div>
+        <div class="performance-grid">
+    
+        <div class="performance-card">
+            <h3>Overall Stats</h3>
+            <div class="perf-stat">
+                <span class="perf-label">Total Props Analyzed</span>
+                <span class="perf-value">53</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Value Plays</span>
+                <span class="perf-value">53</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Win Rate</span>
+                <span class="perf-value">0.0%</span>
+            </div>
+        </div>
+        
+        <div class="performance-card">
+            <h3>Season Record</h3>
+            <div class="perf-stat">
+                <span class="perf-label">Wins</span>
+                <span class="perf-value">0</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Losses</span>
+                <span class="perf-value">0</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Units</span>
+                <span class="perf-value">+0.0u</span>
+            </div>
+        </div>
+        
+        <div class="performance-card">
+            <h3>ROI & Value</h3>
+            <div class="perf-stat">
+                <span class="perf-label">ROI</span>
+                <span class="perf-value">+0.0%</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Min AI Score</span>
+                <span class="perf-value">10</span>
+            </div>
+            <div class="perf-stat">
+                <span class="perf-label">Updated</span>
+                <span class="perf-value">Live</span>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+        <script>
+        // Tab filtering and sorting functionality (no prop tracker logic)
+const tabButtons = document.querySelectorAll('.tab-button');
+const propCards = document.querySelectorAll('.prop-card');
+const propsGrid = document.querySelector('.props-grid');
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        // Get the selected tab
+        const selectedTab = button.getAttribute('data-tab');
+
+        // Toggle single-column layout for specific tabs
+        if (selectedTab === 'all') {
+            propsGrid.classList.remove('single-column');
+        } else {
+            propsGrid.classList.add('single-column');
+        }
+
+        let visibleCards = [];
+
+        if (selectedTab === 'all') {
+            // For 'all', show only top plays (no sorting needed)
+            propCards.forEach(card => {
+                if (card.hasAttribute('data-top-play')) {
+                    visibleCards.push(card);
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        } else {
+            // For other tabs, collect matching cards by prop-type
+            propCards.forEach(card => {
+                const propType = card.getAttribute('data-prop-type');
+                if (propType === selectedTab) {
+                    visibleCards.push(card);
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Sort the visible cards: overs first, then unders
+            visibleCards.sort((a, b) => {
+                const aIsOver = a.classList.contains('over-glow');
+                const bIsOver = b.classList.contains('over-glow');
+                if (aIsOver && !bIsOver) return -1; // a (over) before b (under)
+                if (!aIsOver && bIsOver) return 1;  // b (over) before a (under)
+                return 0; // same type, keep original order
+            });
+        }
+
+        // Clear the grid and re-append sorted/filtered cards
+        propsGrid.innerHTML = '';
+        visibleCards.forEach(card => {
+            propsGrid.appendChild(card);
+        });
+    });
+});
+
+// Initialize with top 6 plays
+document.addEventListener('DOMContentLoaded', () => {
+    const allButton = document.querySelector('[data-tab="all"]');
+    if (allButton) {
+        allButton.click();
+    }
+});
+
+        // Initialize with top 6 plays
+        document.addEventListener('DOMContentLoaded', () => {
+            const allButton = document.querySelector('[data-tab="all"]');
+            if (allButton) {
+                allButton.click();
+            }
+        });
+        </script>
+</body>
+</html>

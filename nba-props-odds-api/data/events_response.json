@@ -1,0 +1,98 @@
+[
+  {
+    "id": "734128222c2a03269132090adb3c593d",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-07T20:41:00Z",
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Houston Rockets"
+  },
+  {
+    "id": "b69d85cac76c01181ada3299bc50ed54",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-07T23:10:00Z",
+    "home_team": "San Antonio Spurs",
+    "away_team": "Dallas Mavericks"
+  },
+  {
+    "id": "a54af649958eb60284f57114fdeeb472",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T00:10:00Z",
+    "home_team": "Orlando Magic",
+    "away_team": "Utah Jazz"
+  },
+  {
+    "id": "05cf7fd60949a0c52340284b261ae851",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T00:40:00Z",
+    "home_team": "Atlanta Hawks",
+    "away_team": "Charlotte Hornets"
+  },
+  {
+    "id": "e9a14346272a3fc89154cc1bf1c5da1b",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T01:10:00Z",
+    "home_team": "Chicago Bulls",
+    "away_team": "Denver Nuggets"
+  },
+  {
+    "id": "076f5eadf0573f4dd2ace4f26ae28ef2",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T01:40:00Z",
+    "home_team": "Los Angeles Lakers",
+    "away_team": "Golden State Warriors"
+  },
+  {
+    "id": "a809adbd88558364e25c834bbb5a88f0",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T02:10:00Z",
+    "home_team": "Phoenix Suns",
+    "away_team": "Philadelphia 76ers"
+  },
+  {
+    "id": "e4c99c288d8e1b1baf8bd7af1678ddb5",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T03:00:00Z",
+    "home_team": "Portland Trail Blazers",
+    "away_team": "Memphis Grizzlies"
+  },
+  {
+    "id": "7b28a8f5733ef01c824181e1b5a42341",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T03:10:00Z",
+    "home_team": "Sacramento Kings",
+    "away_team": "Cleveland Cavaliers"
+  },
+  {
+    "id": "c2aacc97e9c2f14777db6a947e5b0772",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T17:40:00Z",
+    "home_team": "Boston Celtics",
+    "away_team": "New York Knicks"
+  },
+  {
+    "id": "c7739a581c938fedf4dd128cb53f31dc",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T19:10:00Z",
+    "home_team": "Washington Wizards",
+    "away_team": "Miami Heat"
+  },
+  {
+    "id": "9a4bb2e3bc9fd308b6e40f29e43ab2f1",
+    "sport_key": "basketball_nba",
+    "sport_title": "NBA",
+    "commence_time": "2026-02-08T20:10:00Z",
+    "home_team": "Toronto Raptors",
+    "away_team": "Indiana Pacers"
+  }
+]
