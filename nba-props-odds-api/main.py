@@ -6,10 +6,18 @@ Run this file to generate prop predictions with REAL data!
 import os
 import sys
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from data_fetcher import NBADataFetcher
 from prop_analyzer import PropAnalyzer
 from html_generator import HTMLGenerator
+from prop_tracker import (
+    track_new_picks,
+    load_tracking_data,
+    grade_pending_picks,
+    backfill_profit_loss,
+    merge_and_save_performance,
+    _prop_type_key,
+)
 from config import *
 
 # Set console encoding to UTF-8 for emoji support
@@ -26,11 +34,15 @@ def create_data_directory():
         print(f"✅ Created {DATA_DIR} directory")
 
 def load_performance_data():
-    """Load historical performance data"""
+    """Load historical performance data (overall + daily and daily_by_type for today/yesterday)"""
     try:
         if os.path.exists(PERFORMANCE_FILE):
             with open(PERFORMANCE_FILE, 'r') as f:
-                return json.load(f)
+                data = json.load(f)
+            # Ensure daily and daily_by_type exist for Daily Performance section
+            data.setdefault('daily', {})
+            data.setdefault('daily_by_type', {})
+            return data
     except Exception as e:
         if DEBUG_MODE:
             print(f"⚠️ Could not load performance data: {str(e)}")
@@ -40,7 +52,9 @@ def load_performance_data():
         'losses': 0,
         'units': 0.0,
         'roi': 0.0,
-        'total_bets': 0
+        'total_bets': 0,
+        'daily': {},
+        'daily_by_type': {}
     }
 
 def save_performance_data(performance_data):
@@ -179,10 +193,23 @@ def main():
                 break
         
         # Use the correct game info
+        game_date = None
         if correct_game:
             home_team = correct_game.get('home_team', '')
             away_team = correct_game.get('away_team', '')
-            start_time = data_fetcher.format_game_time(correct_game.get('commence_time', ''))
+            commence_time = correct_game.get('commence_time', '')
+            start_time = data_fetcher.format_game_time(commence_time)
+            # Game date (ET) for tracking/grading
+            try:
+                dt = datetime.fromisoformat(commence_time.replace('Z', '+00:00'))
+                try:
+                    from zoneinfo import ZoneInfo
+                    dt_et = dt.astimezone(ZoneInfo('America/New_York'))
+                except ImportError:
+                    dt_et = dt - timedelta(hours=5)
+                game_date = dt_et.strftime('%Y-%m-%d')
+            except Exception:
+                game_date = datetime.now().strftime('%Y-%m-%d')
             
             # Determine opponent
             home_abbrev = data_fetcher.get_team_abbreviation(home_team)
@@ -245,6 +272,7 @@ def main():
             over_analysis['away_team'] = away_team
             over_analysis['team'] = player_team
             over_analysis['start_time'] = start_time
+            over_analysis['game_date'] = game_date or datetime.now().strftime('%Y-%m-%d')
             analyzed_props.append(over_analysis)
 
         # === Analyze UNDER ===
@@ -264,6 +292,7 @@ def main():
             under_analysis['away_team'] = away_team
             under_analysis['team'] = player_team
             under_analysis['start_time'] = start_time
+            under_analysis['game_date'] = game_date or datetime.now().strftime('%Y-%m-%d')
             analyzed_props.append(under_analysis)
 
     print(f"\n✅ Successfully analyzed {len(analyzed_props)} props (Over + Under)")
@@ -277,15 +306,30 @@ def main():
             value_props.append(p)
     print(f"💎 Found {len(value_props)} value plays (per-type thresholds: PTS/AST/REB=10, 3PT=7.5)")
     
+    # Build sharp display: min ~25 props, top by AI score per type (points, assists, rebounds, threes)
+    display_props = html_gen._select_sharp_display_props(value_props, analyzed_props)
+    if not display_props:
+        display_props = value_props if value_props else sorted(analyzed_props, key=lambda x: x.get('ai_score', 0), reverse=True)[:50]
+    print(f"📊 Sharp display: {len(display_props)} props (min 25, balanced across PTS/AST/REB/3PT)")
+    
     print()
     
-    # Step 6: Generate HTML dashboard
-    print("📋 Step 6: Generating dashboard...")
+    # Step 6: Tracking — track new picks, grade pending, update performance.json
+    print("📋 Step 6: Tracking & grading picks...")
+    deduplicated = html_gen._deduplicate_props(display_props)
+    sorted_props = sorted(deduplicated, key=lambda x: x.get('ai_score', 0), reverse=True)
+    top_plays = html_gen._select_diverse_top_plays(sorted_props, TOP_PLAYS_COUNT)
+    top_play_keys = {
+        (p.get('player_name', ''), _prop_type_key(p), p.get('betting_line', 0), p.get('side', ''))
+        for p in top_plays
+    }
+    track_new_picks(value_props, top_play_keys, data_fetcher)
+    tracking = load_tracking_data()
+    grade_pending_picks(tracking, data_fetcher)
+    backfill_profit_loss(tracking)
+    merge_and_save_performance(tracking)
     
     performance_data = load_performance_data()
-    
-    # Use value props if we have them, otherwise show top 50
-    display_props = value_props if value_props else sorted(analyzed_props, key=lambda x: x.get('ai_score', 0), reverse=True)[:50]
     
     html_content = html_gen.generate_dashboard(display_props, performance_data)
     html_gen.save_html(html_content)
@@ -327,3 +371,4 @@ if __name__ == "__main__":
         if DEBUG_MODE:
             import traceback
             traceback.print_exc()
+

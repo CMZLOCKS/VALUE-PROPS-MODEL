@@ -221,3 +221,27 @@ if __name__ == "__main__":
         if DEBUG_MODE:
             import traceback
             traceback.print_exc()
+# Daily tracking file (extend props history)
+DAILY_OUTCOMES_FILE = f'{DATA_DIR}/props_history.json'  # Reuse existing file
+
+# Default units risked per bet
+UNITS_PER_BET = 1.0
+# ... (existing imports and code)
+
+def load_daily_outcomes(date_str):
+    """Load outcomes for a specific date from history"""
+    history = {}
+    if os.path.exists(PROPS_HISTORY_FILE):
+        with open(PROPS_HISTORY_FILE, 'r') as f:
+            history = json.load(f)
+    day_data = history.get(date_str, {})
+    return {
+        'wins': day_data.get('wins', 0),
+        'losses': day_data.get('losses', 0),
+        'units': day_data.get('units', 0.0),
+        'roi': day_data.get('roi', 0.0),
+        'total_bets': day_data.get('total_bets', 0),
+        'outcomes': day_data.get('outcomes', {})  # prop_id: {'result': 'hit/miss/push', 'units': x}
+    }
+
+d

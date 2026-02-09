@@ -389,6 +389,52 @@ class NBADataFetcher:
                      'PTS': 110, 'AST': 25, 'REB': 44, 'FG3M': 12, 'OFF_RATING': 110.0}
         return self.team_defense_stats.get(opponent_abbrev, defaults)
 
+    def fetch_player_stat_for_date(self, player_name, game_date_str, stat_key='PTS'):
+        """
+        Fetch a player's actual stat for a specific game date (for grading picks).
+        Uses nba_api PlayerGameLog. Returns int or None if not found.
+        """
+        try:
+            from nba_api.stats.endpoints import PlayerGameLog
+            from nba_api.stats.static import players as nba_players
+
+            player_list = nba_players.get_players()
+            name_parts = player_name.lower().split()
+            player_id = None
+            for p in player_list:
+                p_name = (p.get('full_name') or '').lower()
+                p_parts = p_name.split()
+                if len(name_parts) >= 2 and len(p_parts) >= 2:
+                    if name_parts[0] in p_parts[0] and name_parts[-1] in p_parts[-1]:
+                        player_id = p['id']
+                        break
+            if not player_id:
+                return None
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Referer': 'https://www.nba.com/',
+                'Accept': 'application/json',
+            }
+            log = PlayerGameLog(
+                player_id=player_id,
+                season='2025-26',
+                date_from_nullable=game_date_str,
+                date_to_nullable=game_date_str,
+                headers=headers,
+                timeout=30
+            )
+            df = log.get_data_frames()
+            if not df or df[0].empty:
+                return None
+            row = df[0].iloc[0]
+            stat_val = row.get(stat_key, 0)
+            return int(stat_val) if stat_val is not None else None
+        except Exception as e:
+            if DEBUG_MODE:
+                print(f"⚠️ fetch_player_stat_for_date {player_name} {game_date_str}: {e}")
+            return None
+
     def get_team_abbreviation(self, full_name):
         """Convert full team name to abbreviation"""
         if not full_name:

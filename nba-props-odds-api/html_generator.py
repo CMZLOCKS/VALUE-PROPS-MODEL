@@ -311,6 +311,56 @@ class HTMLGenerator:
         selected.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
         
         return selected[:count]
+
+    def _select_sharp_display_props(self, value_props, analyzed_props):
+        """
+        Select the sharpest props for display: at least TARGET_MIN_DISPLAY (~25),
+        with minimum MIN_DISPLAY_PER_TYPE from each of points, assists, rebounds, threes.
+        Takes top by AI score per category so we get the best edges from each type.
+        """
+        target = TARGET_MIN_DISPLAY
+        per_type = MIN_DISPLAY_PER_TYPE
+        # Build candidate pool: start with value plays; if fewer than target, add next best from analyzed
+        pool = list(value_props) if value_props else []
+        if len(pool) < target and analyzed_props:
+            remaining = [p for p in analyzed_props if p not in pool]
+            remaining.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
+            for p in remaining:
+                pool.append(p)
+                if len(pool) >= target:
+                    break
+        if not pool:
+            return []
+        # Group by prop type (points, assists, rebounds, threes)
+        by_type = {'points': [], 'assists': [], 'rebounds': [], 'threes': []}
+        for p in pool:
+            key = self._get_prop_data_type(p)
+            if key in by_type:
+                by_type[key].append(p)
+        # Take top N per type by AI score (sharpest first)
+        selected = []
+        for key in ('points', 'assists', 'rebounds', 'threes'):
+            by_type[key].sort(key=lambda x: x.get('ai_score', 0), reverse=True)
+            selected.extend(by_type[key][:per_type])
+        # Dedupe by identity (same prop object might appear if we didn't dedupe pool)
+        seen_ids = set()
+        unique = []
+        for p in selected:
+            pid = (p.get('player_name'), p.get('prop_type'), p.get('betting_line'), p.get('side'))
+            if pid not in seen_ids:
+                seen_ids.add(pid)
+                unique.append(p)
+        # If still under target, add next best from pool (any type) by AI score
+        if len(unique) < target:
+            pool_sorted = sorted(pool, key=lambda x: x.get('ai_score', 0), reverse=True)
+            for p in pool_sorted:
+                if len(unique) >= target:
+                    break
+                pid = (p.get('player_name'), p.get('prop_type'), p.get('betting_line'), p.get('side'))
+                if pid not in seen_ids:
+                    seen_ids.add(pid)
+                    unique.append(p)
+        return unique
     
     def _generate_tracker_section(self, props, prop_type_key, prop_type_label):
         """Generate prop tracker section for a specific prop type tab"""
@@ -432,20 +482,97 @@ class HTMLGenerator:
             </div>
         </div>
 """
-    
+
+    def _get_daily_stats(self, performance_data, date_str):
+        """Get overall daily stats for a date. Returns wins, losses, units, roi."""
+        daily = performance_data.get('daily', {}) or {}
+        d = daily.get(date_str, {})
+        wins = d.get('wins', 0)
+        losses = d.get('losses', 0)
+        pushes = d.get('pushes', 0)
+        units = d.get('units', 0.0)
+        roi = d.get('roi', 0.0)
+        total = wins + losses + pushes
+        if total > 0 and roi == 0 and units != 0:
+            roi = (units / (wins + losses)) * 100 if (wins + losses) > 0 else 0.0
+        return wins, losses, units, roi
+
+    def _get_daily_stats_by_type(self, performance_data, date_str, type_key):
+        """Get daily stats for a date and prop type (top6, points, assists, rebounds, threes)."""
+        by_type = performance_data.get('daily_by_type', {}) or {}
+        day_data = by_type.get(date_str, {}) or {}
+        d = day_data.get(type_key, {})
+        wins = d.get('wins', 0)
+        losses = d.get('losses', 0)
+        pushes = d.get('pushes', 0)
+        units = d.get('units', 0.0)
+        roi = d.get('roi', 0.0)
+        total = wins + losses + pushes
+        if total > 0 and roi == 0 and units != 0:
+            roi = (units / (wins + losses)) * 100 if (wins + losses) > 0 else 0.0
+        return wins, losses, units, roi
+
+    def _format_daily_box(self, label, wins, losses, units, roi):
+        """Format a single daily box (TODAY or YESTERDAY) with W-L, units, ROI%."""
+        roi_class = 'positive' if roi > 0 else ('negative' if roi < 0 else '')
+        units_class = 'positive' if units > 0 else ('negative' if units < 0 else '')
+        return f"""
+            <div class="daily-day-box">
+                <div class="daily-day-label">{label}</div>
+                <div class="daily-record">{wins}-{losses}</div>
+                <div class="daily-units {units_class}">{units:+.1f}u</div>
+                <div class="daily-roi {roi_class}">{roi:+.1f}% ROI</div>
+            </div>"""
+
+    def _generate_daily_performance_section(self, performance_data):
+        """Generate Daily Performance section: overall + per prop type (Top 6, Points, Assists, Rebounds, 3PT)."""
+        today = datetime.now().strftime('%Y-%m-%d')
+        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+
+        w_today, l_today, u_today, r_today = self._get_daily_stats(performance_data, today)
+        w_yest, l_yest, u_yest, r_yest = self._get_daily_stats(performance_data, yesterday)
+
+        overall_html = f"""
+        <div class="daily-performance-card">
+            <h3>📅 Daily Performance</h3>
+            <div class="daily-performance-row">
+                {self._format_daily_box('TODAY', w_today, l_today, u_today, r_today)}
+                {self._format_daily_box('YESTERDAY', w_yest, l_yest, u_yest, r_yest)}
+            </div>
+        </div>"""
+
+        type_config = [
+            ('top6', 'Top 6 Plays'),
+            ('points', 'Points'),
+            ('assists', 'Assists'),
+            ('rebounds', 'Rebounds'),
+            ('threes', '3 Points Made'),
+        ]
+        by_type_rows = []
+        for type_key, type_label in type_config:
+            w_t, l_t, u_t, r_t = self._get_daily_stats_by_type(performance_data, today, type_key)
+            w_y, l_y, u_y, r_y = self._get_daily_stats_by_type(performance_data, yesterday, type_key)
+            by_type_rows.append(f"""
+            <div class="daily-type-row">
+                <div class="daily-type-label">{type_label}</div>
+                <div class="daily-type-boxes">
+                    {self._format_daily_box('Today', w_t, l_t, u_t, r_t)}
+                    {self._format_daily_box('Yesterday', w_y, l_y, u_y, r_y)}
+                </div>
+            </div>""")
+
+        return overall_html + """
+        <div class="daily-performance-by-type">
+            <h3>📅 Daily Performance by Prop Type</h3>
+            """ + "\n".join(by_type_rows) + """
+        </div>"""
+
     def generate_dashboard(self, props, performance_data):
         """Generate complete HTML dashboard"""
         # First, deduplicate props - keep only the best side for each player/prop combo
         deduplicated_props = self._deduplicate_props(props)
         
-        # Sort so all 'Over' props are on top, then 'Under', both sorted by AI score descending
-        sorted_props = sorted(
-            deduplicated_props,
-            key=lambda x: (
-                0 if x.get('side', '').lower() == 'over' else 1,
-                -x.get('ai_score', 0)
-            )
-        )
+        sorted_props = sorted(deduplicated_props, key=lambda x: x.get('ai_score', 0), reverse=True)
         
         # Smart top 6 selection - ensure diversity of prop types
         top_plays = self._select_diverse_top_plays(sorted_props, TOP_PLAYS_COUNT)
@@ -977,6 +1104,111 @@ class HTMLGenerator:
             text-align: center;
         }}
 
+        /* ===== Daily Performance (Today / Yesterday + ROI) ===== */
+        .daily-performance-card {{
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            margin-top: 30px;
+        }}
+
+        .daily-performance-card h3,
+        .daily-performance-by-type h3 {{
+            color: #10b981;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }}
+
+        .daily-performance-row {{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }}
+
+        .daily-day-box {{
+            flex: 1;
+            min-width: 140px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            text-align: center;
+        }}
+
+        .daily-day-label {{
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }}
+
+        .daily-record {{
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }}
+
+        .daily-units {{
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }}
+
+        .daily-units.positive {{ color: #10b981; }}
+        .daily-units.negative {{ color: #ef4444; }}
+
+        .daily-roi {{
+            font-size: 14px;
+            font-weight: 700;
+        }}
+
+        .daily-roi.positive {{ color: #10b981; }}
+        .daily-roi.negative {{ color: #ef4444; }}
+
+        .daily-performance-by-type {{
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            margin-top: 20px;
+        }}
+
+        .daily-type-row {{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            flex-wrap: wrap;
+        }}
+
+        .daily-type-row:last-child {{
+            border-bottom: none;
+        }}
+
+        .daily-type-label {{
+            font-size: 14px;
+            font-weight: 700;
+            color: #e2e8f0;
+            min-width: 120px;
+        }}
+
+        .daily-type-boxes {{
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }}
+
+        .daily-type-boxes .daily-day-box {{
+            min-width: 120px;
+            flex: 0 1 auto;
+        }}
+
         @media (max-width: 768px) {{
             .header-content {{
                 flex-direction: column;
@@ -1013,7 +1245,7 @@ class HTMLGenerator:
             </div>
         </div>
 
-        <div class="section-title">Top 6 Value Plays • Diverse Mix (Points, Assists, Rebounds, 3PT)</div>
+        <div class="section-title">Top Value Play: AI LIVE PROP</div>
 
         <div class="tabs-container">
             <button class="tab-button active" data-tab="all">🔥 Top 6 Plays</button>
@@ -1032,17 +1264,27 @@ class HTMLGenerator:
             key = (tp.get('player_name', ''), tp.get('prop_type', ''), tp.get('betting_line', 0), tp.get('side', ''))
             top_play_ids.add(key)
 
+        # Sort: Overs first, then Unders; within each by AI score descending
+        display_props_order = sorted(
+            sorted_props,
+            key=lambda x: (0 if (x.get('side') or 'Over') == 'Over' else 1, -x.get('ai_score', 0))
+        )
+
         # Generate cards for ALL props (not just top plays) so filtering works
-        for prop in sorted_props:
+        for prop in display_props_order:
             key = (prop.get('player_name', ''), prop.get('prop_type', ''), prop.get('betting_line', 0), prop.get('side', ''))
             html += self._generate_prop_card(prop, is_top_play=(key in top_play_ids))
         
         html += """
         </div>
+        """
+        # Daily Performance (overall) then Daily by Prop Type — on top
+        html += self._generate_daily_performance_section(performance_data)
+        # Model Performance (3 cards) — on bottom
+        html += """
         <div class=\"section-title\">Model Performance</div>
         <div class=\"performance-grid\">
     """
-        
         html += self._generate_performance_section(performance_data, total_props, value_props, win_rate)
 
         html += """
